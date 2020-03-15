@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'topics/new'
   get 'users/new'
   root 'pages#index'
   get 'pages/index'
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
 end
 
 Rails.application.routes.draw do
+  get 'topics/new'
   get 'sessions/new'
 
   root 'pages#index'
@@ -19,4 +21,21 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+end
+
+Rails.application.routes.draw do
+  get 'sessions/new'
+
+  root 'pages#index'
+  get 'pages/help'
+
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+
+  resources :users
+  resources :topics
+  
+  get 'favorites/index'
+  post '/favorites', to: 'favorites#create'
 end

@@ -8,4 +8,7 @@ VALID_PASSWORD_REGEX = /\A[a-zA-Z0-9]+\z/
 VALID_EMAIL_REGEX = /\A\S+@\S+\.\S+\z/
  validates :email, format: { with: VALID_EMAIL_REGEX }
  validates :name, length: { minimum: 1, maximum: 15 }
+ has_many :topics
+ has_many :favorites
+ has_many :favorite_topics, through: :favorites, source: 'topic'
 end
